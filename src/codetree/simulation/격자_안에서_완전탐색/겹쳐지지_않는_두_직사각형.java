@@ -1,4 +1,4 @@
-package codetree.simulation;
+package codetree.simulation.격자_안에서_완전탐색;
 
 import java.util.Scanner;
 

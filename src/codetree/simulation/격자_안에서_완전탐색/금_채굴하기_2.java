@@ -1,8 +1,8 @@
-package codetree.simulation;
+package codetree.simulation.격자_안에서_완전탐색;
 
 import java.util.Scanner;
 
-public class 금_채굴하기_3 {
+public class 금_채굴하기_2 {
     static int n;
     static int m;
     static int[][] arr;
@@ -12,10 +12,8 @@ public class 금_채굴하기_3 {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                /* 풀이 3. 중복되는 경우 제외하여 효율적으로 탐색 */
-                int goldCount = 0;
                 for (int k = 0; k <= 2 * (n - 1); k++) {
-                    goldCount += getGoldCountInBorder(i, j, k);
+                    int goldCount = getGoldCount(i, j, k);
                     int miningCost = getMiningCost(k);
                     if (m * goldCount >= miningCost) {
                         answer = Math.max(answer, goldCount);
@@ -31,29 +29,30 @@ public class 금_채굴하기_3 {
         return k * k + (k + 1) * (k + 1);
     }
 
-    public static int getGoldCountInBorder(int x, int y, int k) {
+    public static int getGoldCount(int x, int y, int k) {
         int count = 0;
 
+        /* 풀이 2. 마름모 내부만 확인 */
         // 대각선 방향 정의
         int[] dx = {1, 1, -1, -1};
         int[] dy = {-1, 1, 1, -1};
 
-        // k = 0일 때는 현재 위치만 확인
-        if (k == 0) {
-            return arr[x][y];
-        }
+        // k = 0일 때(현재 위치가 금이면 더해주기)
+        count += arr[x][y];
 
-        // 순회 시작점 설정
-        int nx = x - k;
-        int ny = y;
+        for (int d = 1; d <= k; d++) {
+            // 순회 시작점 설정
+            int nx = x - d;
+            int ny = y;
 
-        for (int i = 0; i < 4; i++) {
-            for (int step = 0; step < k; step++) {
-                if (inRange(nx, ny)) {
-                    count += arr[nx][ny];
+            for (int i = 0; i < 4; i++) {
+                for (int step = 0; step < d; step++) {
+                    if (inRange(nx, ny)) {
+                        count += arr[nx][ny];
+                    }
+                    nx += dx[i];
+                    ny += dy[i];
                 }
-                nx += dx[i];
-                ny += dy[i];
             }
         }
 
