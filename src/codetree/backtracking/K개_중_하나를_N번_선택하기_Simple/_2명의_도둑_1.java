@@ -1,27 +1,19 @@
-package codetree.backtracking;
+package codetree.backtracking.K개_중_하나를_N번_선택하기_Simple;
 
 import java.util.Scanner;
 
-public class _2명의_도둑_2 {
+public class _2명의_도둑_1 {
     static final int MAX_N = 10;
     static final int MAX_M = 5;
 
     static int n, m, c;
     static int[][] weight = new int[MAX_N][MAX_N];
     static int[] a = new int[MAX_M];
-    static int[][] dp = new int[MAX_N][MAX_N]; // dp 이용
 
     static int ans;
     static int max;
 
     public static void solution() {
-        // dp 배열 초기화
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                dp[i][j] = -1;
-            }
-        }
-
         for (int sx1 = 0; sx1 < n; sx1++) {
             for (int sy1 = 0; sy1 < n; sy1++) {
                 for (int sx2 = 0; sx2 < n; sx2++) {
@@ -59,11 +51,6 @@ public class _2명의_도둑_2 {
     }
 
     public static int findMax(int sx, int sy) {
-        // dp에 저장되어 있다면 해당 값 반환
-        if (dp[sx][sy] != -1) {
-            return dp[sx][sy];
-        }
-
         for (int i = sy; i <= sy + m - 1; i++) {
             // a[0] 부터 삽입
             a[i - sy] = weight[sx][i];
@@ -71,7 +58,6 @@ public class _2명의_도둑_2 {
 
         max = 0;
         findMaxSum(0, 0, 0);
-        dp[sx][sy] = max;
         return max;
     }
 

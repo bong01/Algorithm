@@ -1,4 +1,4 @@
-package codetree.backtracking;
+package codetree.backtracking.K개_중_하나를_N번_선택하기_Simple;
 
 import java.util.Scanner;
 
