@@ -1,4 +1,4 @@
-package codetree.backtracking.순열;
+package codetree.backtracking.순열_만들기;
 
 import java.util.ArrayList;
 import java.util.List;
