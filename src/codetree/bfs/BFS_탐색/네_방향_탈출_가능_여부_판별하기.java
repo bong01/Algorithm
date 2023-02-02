@@ -60,6 +60,9 @@ public class 네_방향_탈출_가능_여부_판별하기 {
             }
         }
 
+        q.add(new Point(0, 0));
+        visit[0][0] = true;
+
         bfs();
 
         System.out.println(visit[n - 1][m - 1] ? 1 : 0);
